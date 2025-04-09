@@ -44,8 +44,8 @@ const home = {
   headline: <>Biomedical Engineering Student</>,
   subline: (
     <>
-      I'm Jonathan, a Biomedical Engineering Student at <InlineCode>UNIVERSITY of COLORADO</InlineCode>, where I hone my skills
-      <br /> in a multi-dimensional, cross disciplinary field that merges Biology and Technology to improve outcomes and better lives.
+      Hi, I'm Jonathan, a Biomedical Engineering student at <InlineCode>UNIVERSITY of COLORADO</InlineCode>, specializing
+      <br /> in the intersection of biology and technology. I’m passionate about leveraging cross-disciplinary innovation to improve health outcomes and enhance lives.
     </>
   ),
 };
