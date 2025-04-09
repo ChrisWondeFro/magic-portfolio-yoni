@@ -1,26 +1,15 @@
 import { InlineCode } from "@/once-ui/components";
 
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "Jonathan",
+  lastName: "Bereket",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
+  role: "Biomedical Engineering Student",
   avatar: "/images/avatar.jpg",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
-};
-
-const newsletter = {
-  display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: (
-    <>
-      I occasionally write about design, technology, and share thoughts on the intersection of
-      creativity and engineering.
-    </>
-  ),
+  location: "America/Denver", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const social = [
@@ -29,12 +18,12 @@ const social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/yonibereket/",
   },
   {
     name: "X",
@@ -44,7 +33,7 @@ const social = [
   {
     name: "Email",
     icon: "email",
-    link: "mailto:example@gmail.com",
+    link: "mailto:yberishcut@gmail.com",
   },
 ];
 
@@ -52,11 +41,11 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Design engineer and builder</>,
+  headline: <>Biomedical Engineering Student</>,
   subline: (
     <>
-      I'm Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I'm Jonathan, a Biomedical Engineering Student at <InlineCode>UNIVERSITY of COLORADO</InlineCode>, where I hone my skills
+      <br /> in a multi-dimensional, cross disciplinary field that merges Biology and Technology to improve outcomes and better lives.
     </>
   ),
 };
@@ -81,9 +70,12 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Jonathan is a junior pursuing a degree in Biomedical Engineering 
+        with strong proficiency in Excel, SolidWorks, and Python. 
+        He is passionate about merging biological concepts with technology
+        to advance healthcare solutions and improve society's overall well-being. 
+        Jonathan eagerly seeks opportunities that will allow him to pursue these  
+        interests and contribute to innovations in the biomedical field.
       </>
     ),
   },
@@ -282,4 +274,4 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, home, about, blog, work, gallery };
