@@ -61,10 +61,10 @@ const about = {
   avatar: {
     display: true,
   },
-  calendar: {
-    display: true,
-    link: "https://cal.com",
-  },
+  //calendar: {
+    //display: true,
+    //link: "https://cal.com",
+  //},
   intro: {
     display: true,
     title: "Introduction",
@@ -84,41 +84,61 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Undergraduate Learning Assistant - Circuits",
+        timeframe: "August 2024 - Present",
+        role: "Teaching Assistant",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Evaluated and graded assignments, lab reports, and exams, ensuring alignment with learning objectives and academic standards.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Hosted office hours to provide targeted guidance and address technical concepts.
+          </>,
+          <>
+            Analyzed student performance to identify learning gaps, offering personalized feedback and strategies to improve outcomes.
+          </>,
+          <>
+            Developed and led interactive review sessions and collaborative study groups, promoting active learning and peer-to-peer engagement.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Anschutz Medical Campus",
+        timeframe: "June 2024 - August 2024",
+        role: "Undergraduate Researcher",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Cultivated cell media and created cellular membranes, optimizing conditions for enhanced cell growth and membrane integrity.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Worked with frozen hearts to extract RNA, utilizing specialized protocols to ensure high-quality samples for downstream analysis.
+          </>,
+          <>
+            Conducted experiments to determine the effects of various treatments on cellular function and viability.
+          </>,
+          <>
+            Maintained detailed lab notebooks and contributed to the preparation of research presentations.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "The BOLd Center",
+        timeframe: "August 2023 - May 2024",
+        role: "Front Desk Intern",
+        achievements: [
+          <>
+            Performed data entry and administrative duties such as filing and scanning documents and updating databases.
+          </>,
+          <>
+            Scheduled client appointments using the office calendar system and provided updates on changes or cancellations.
+          </>,
+          <>
+            Welcomed visitors professionally while managing incoming calls and emails, directed them to appropriate staff members, or took detailed messages as necessary.
+          </>,
+          <>
+            Aided with mail distribution, package delivery, and pickup services.
           </>,
         ],
         images: [],
@@ -127,53 +147,35 @@ const about = {
   },
   studies: {
     display: true, // set to false to hide this section
-    title: "Studies",
+    title: "Education",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "University of Colorado Boulder",
+        description: <>Biomedical Engineering | Minor: Electrical Engineering | Expected Graduation: May 2026 | GPA: 3.7 (Major)<br/>
+          • Received CU Esteemed Scholarship Sewall<br/>
+          • Received BOLD Schlps-EN<br/>
+          <strong>Relevant Coursework</strong>: Electronic Design Lab, Printed Circuit Board Design, Circuits as Systems, Mechanics of Solids, Statics and Structures, Computer-Aided Design & Fabrication</>,
       },
     ],
   },
   technical: {
     display: true, // set to false to hide this section
-    title: "Technical skills",
+    title: "Technical Skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Circuit Design",
+        description: <>Altium, PCB Design, SIMetrix</>,
+        images: [],
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Programming",
+        description: <>MATLAB, VBA, Microsoft Excel, R, Arduino, Python (Basic Proficiency)</>,
+        images: [],
+      },
+      {
+        title: "Fabrication Design",
+        description: <>SolidWorks (CSWA Certified), Computer-Aided Design and Fabrication</>,
+        images: [],
       },
     ],
   },
