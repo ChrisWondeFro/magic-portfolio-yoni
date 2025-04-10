@@ -1,39 +1,238 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
-import React, { ReactNode } from "react";
+import React, { ReactNode, } from "react";
 
-import { SmartImage, SmartLink, Text } from "@/once-ui/components";
+import { SmartImage, SmartLink, Text, Column, Flex } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
 import { HeadingLink } from "@/components";
 
 import { TextProps } from "@/once-ui/interfaces";
 import { SmartImageProps } from "@/once-ui/components/SmartImage";
 
+
+// Server-compatible figure counter
+let figureCounter = 0;
+
+// Reset counter before rendering MDX content
+function resetFigureCounter() {
+  figureCounter = 0;
+}
+
+type FigureProps = {
+  src: string;
+  alt: string;
+  caption?: string;
+  maxHeight?: string;
+};
+
+function Figure({ src, alt, caption }: FigureProps) {
+
+  // Increment counter for each figure
+  figureCounter += 1;
+  
+  return (
+    <Column className="my-10 py-32" gap="20" horizontal="center">
+      <SmartImage
+        enlarge
+        radius="m"
+        aspectRatio="16 / 9"
+        objectFit="contain"
+        sizes="(max-width: 800px) 100vw, 800px" // This matches your maxWidth above
+        alt={alt}
+        src={src}
+
+      />
+      <Text variant="body-strong-s" onBackground="neutral-medium" align="center">
+        Figure {figureCounter}: {caption || alt}
+      </Text>
+    </Column>
+  );
+}
+
+// Enhanced Table Components
 type TableProps = {
+  children: ReactNode;
+  className?: string;
+};
+
+function Table({ children, className = "table" }: TableProps) {
+  return (
+    <div className="w-full my-2 overflow-auto">
+      <table className={`w-full border-collapse ${className}`}>
+        {children}
+      </table>
+    </div>
+  );
+}
+
+type TableCaptionProps = {
+  children: ReactNode;
+};
+
+function TableCaption({ children }: TableCaptionProps) {
+  // Use native caption element instead of Text component
+  return (
+    <caption className="caption-top py-2 text-sm font-medium text-center text-gray-700">
+      {children}
+    </caption>
+  );
+}
+
+type TableHeaderProps = {
+  children: ReactNode;
+};
+
+function TableHeader({ children }: TableHeaderProps) {
+  return <thead className="bg-gray-100">{children}</thead>;
+}
+
+type TableBodyProps = {
+  children: ReactNode;
+};
+
+function TableBody({ children }: TableBodyProps) {
+  return <tbody>{children}</tbody>;
+}
+
+type TableFooterProps = {
+  children: ReactNode;
+};
+
+function TableFooter({ children }: TableFooterProps) {
+  return <tfoot className="bg-gray-100 font-medium">{children}</tfoot>;
+}
+
+type TableRowProps = {
+  children: ReactNode;
+  index?: number;
+};
+
+function TableRow({ children, index = 0 }: TableRowProps) {
+  const isEven = index % 2 === 0;
+  return <tr className={isEven ? "bg-gray-50" : "bg-white"}>{children}</tr>;
+}
+
+type TableHeadProps = {
+  children: ReactNode;
+  className?: string;
+  index?: number;
+};
+
+
+function TableHead({ children, className = "" , index= 0 }: TableHeadProps) {
+  const isEvenColumn = index % 2 === 0;
+  return (
+    <th className={`p-12 pl-56 text-center border-b border-gray-200 font-medium ? "bg-gray-100 text-gray-800" : "bg-gray-50 text-gray-700"} ${className}`}
+    >
+      {children}
+    </th>
+  );
+}
+
+type TableCellProps = {
+  children: ReactNode;
+  className?: string;
+  colSpan?: number;
+  index?: number; // Added index prop for column styling
+  rowIndex?: number;
+};
+
+function TableCell({ children, className = "tablecell", colSpan, index = 0, rowIndex = 0  }: TableCellProps) {
+  const isEvenColumn = index % 2 === 0;
+  const isEvenRow = rowIndex % 2 === 0;
+
+  // Determine background and text colors based on position
+  let bgColorClass = "bg-white";
+  let textColorClass = "text-gray-700";
+  
+  if (isEvenRow && isEvenColumn) {
+    bgColorClass = "bg-gray-50";
+    textColorClass = "text-gray-800";
+  } else if (isEvenRow && !isEvenColumn) {
+    bgColorClass = "bg-gray-100";
+    textColorClass = "text-gray-700";
+  } else if (!isEvenRow && isEvenColumn) {
+    bgColorClass = "bg-white";
+    textColorClass = "text-gray-600";
+  } else {
+    bgColorClass = "bg-gray-50";
+    textColorClass = "text-gray-700";
+  }
+
+  return (
+    <td 
+      className={`p-3 border-b pl-56 border-gray-200 ${bgColorClass} ${textColorClass} ${className}`}
+      colSpan={colSpan}
+    >
+      {children}
+    </td>
+  );
+}
+
+// Data-driven table for easier MDX usage
+type DataTableProps = {
   data: {
     headers: string[];
     rows: string[][];
+    footer?: {
+      label: string;
+      value: string;
+      colSpan?: number;
+    };
   };
+  caption?: string;
 };
 
-function Table({ data }: TableProps) {
-  const headers = data.headers.map((header, index) => <th key={index}>{header}</th>);
-  const rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
-
+function DataTable({ data, caption }: DataTableProps) {
   return (
-    <table>
-      <thead>
-        <tr>{headers}</tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <div className="w-full my-32 overflow-auto">
+      <table className="w-full border-collapse">
+        {caption && (
+          <caption>
+            <Text variant="body-strong-s" onBackground="neutral-medium" align="center" className="mt-8">
+              {caption}
+            </Text>
+          </caption>
+        )}
+        <thead className="bg-gray-100">
+          <tr>
+            {data.headers.map((header, index) => (
+              <th key={index} className="p-12 text-left border-b border-gray-200 font-medium">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.rows.map((row, rowIndex) => (
+            <tr key={rowIndex} className={rowIndex % 2 === 0 ? "bg-gray-50" : ""}>
+              {row.map((cell, cellIndex) => (
+                <td key={cellIndex} className="p-12 border-b border-gray-200">
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+        {data.footer && (
+          <tfoot className="bg-gray-100 font-medium">
+            <tr>
+              <td 
+                className="p-12 border-b border-gray-200" 
+                colSpan={data.footer.colSpan || data.headers.length - 1}
+              >
+                {data.footer.label}
+              </td>
+              <td className="p-12 border-b border-gray-200 text-right">
+                {data.footer.value}
+              </td>
+            </tr>
+          </tfoot>
+        )}
+      </table>
+    </div>
   );
 }
+
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -139,6 +338,15 @@ const components = {
   img: createImage as any,
   a: CustomLink as any,
   Table,
+  TableCaption,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  DataTable, // Keep the data-driven version for convenience
+  Figure,
   CodeBlock,
 };
 
@@ -147,8 +355,12 @@ type CustomMDXProps = MDXRemoteProps & {
 };
 
 export function CustomMDX(props: CustomMDXProps) {
+  // Reset figure counter before rendering
+  resetFigureCounter();
+
   return (
-    // @ts-ignore: Suppressing type error for MDXRemote usage
-    <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />
+      /* @ts-ignore: Suppressing type error for MDXRemote usage */
+      <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />
+  
   );
 }

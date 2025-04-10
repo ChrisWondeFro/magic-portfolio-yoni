@@ -67,3 +67,65 @@ a:not(.button) {
 ::-webkit-scrollbar-corner {
     background-color: var(--static-transparent);
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    border: 1px solid #e5e7eb;
+  }
+  
+  th {
+    background-color: #edf0eb;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    color: #000000;;
+  }
+  
+  td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;;
+    color: #4b5563;
+   
+  }
+
+  tr:nth-child(odd) {
+    background-color:  #ffffff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f6f8f5;
+  }
+
+  /* Alternating columns - this requires CSS :nth-child selectors */
+  td:nth-child(even), th:nth-child(even) {
+    background-color: #f6f8f5;
+  }
+  
+  caption {
+    caption-side: top;
+    padding: 0.5rem 0;
+    font-weight: 600;
+    text-align: center;
+    color: #fbfbfb;
+  }
+  
+  tfoot {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    color: #000;
+  }
+  
+/* Styling for datasheet links in Table */
+  .tablecell a:hover {
+    color: #122e6e; /* Darker blue on hover */
+    text-decoration: underline;
+  }
+
+  .tablecell a {
+    color: #0e7e1f;
+    font-weight: 600;
+
+
+  }

@@ -1,0 +1,291 @@
+---
+title: "Hex Inverter Circuit Design: Comparing Good vs. Bad Layout Practices"
+publishedAt: "2024-03-03"
+summary: "Design and implementation of two identical hex inverter circuits - one with good design features (short signal return lines and ground plane) and one with poor layout practices to analyze and compare their performance."
+images:
+  - "/images/projects/project-01/hex-invertor.jpg"
+  - "/images/projects/project-01/board-2/figure1.jpg"
+team:
+  - name: "Jonathan Bereket"
+    role: "Student"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/yonibereket/"
+---
+
+## Purpose of Report (POR)
+
+In this lab, I built two identical hex inverter circuits. The first hex inverter circuit uses good design features: short signal return lines and a ground plane, while the second hex inverter does not. 
+
+The goal is to design a board with: 
+1. Power conditioning that uses an LDO to convert 5V to 3.3V 
+2. Create a PWM of about 500 Hz and 50% duty cycle using a 555 timer 
+3. Hex inverter that can be interacted with separately through a switch 
+4. Push a current through four of the outputs to compare the inverters 
+5. Measure one of the inverters to show quiet HIGH and the other inverter to show quiet LOW 
+6. Indicator LEDs and test points to see if the board is functioning properly 
+7. One side includes great design practices, and the other side of the board has bad layout practices
+   - a. One side of the board should not have a ground plane, and decoupling capacitors should be placed far away from VCC, but everything else is the same. 
+8. Test points on
+   - a. Scope trigger output 
+   - b. 555 output signal 
+   - c. 3.3 V rail on board 
+   - d. 5V rail on board 
+   - e. Quiet HIGH and Quiet LOW on both sides of the board 
+   - f. On one 50 ohm resistor 
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure1.jpg" 
+  alt="Board Schematic" 
+  caption="Schematic of the two hex inverter circuit designs"
+  maxHeight="500px"
+/>
+
+## Bill of Materials
+
+<Table>
+  <TableCaption></TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Parts (Quantity)</TableHead>
+      <TableHead>Size</TableHead>
+      <TableHead>Additional Comments</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>5V Barrel Jack Power Supply (1x)</TableCell>
+      <TableCell></TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>22 μF Capacitors (5x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Red LEDs (8x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>LDO (1x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>1k Ohm Resistors (4x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>3 Pin Switch (1x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>2 Pin Switch (1x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>Ne555 Timer (1x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell><a href="https://www.ti.com/lit/ds/symlink/ne555.pdf" target="_blank" rel="noopener noreferrer">Datasheet</a></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>1 μF Capacitors (1x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>47 Ohm Resistors (6x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>10k Ohm Resistors (2x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>Hex Inverters (2x)</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell><a href="https://www.ti.com/lit/ds/symlink/sn74hc04.pdf" target="_blank" rel="noopener noreferrer">Datasheet</a></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Header Pins and Caps</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>Printed Circuit Board</TableCell>
+      <TableCell>3.9 x 3.9 mil</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## What it means to work
+
+A properly functioning and well-designed Board 2 should have 5V at the power rails and, through the LDO, can become 3.3V. This will feed into the 555 timer, which should output a clock signal of about 500 Hz with a 50% duty cycle. This PWM is input into the hex inverters, which should invert the initial signal. If these parameters are met, then it can be concluded that the board works.
+
+## Potential Risk
+
+This board's potential risk is ensuring the power distribution network is carried through properly sized routing wires. This will increase the rail collapse and cause additional noise throughout the circuit. Another potential risk is the plethora of interconnects at the 555 timer, which can impede its output and mess with the PDN as well.
+
+## Board Design Process
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure2.png" 
+  alt="Board Design" 
+  caption="PCB"
+  
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure3.png" 
+  alt="Board Design" 
+  caption="PCB"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure4.png" 
+  alt="Board Design" 
+  caption="PCB"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure5.png" 
+  alt="Board Design" 
+  caption="PCB"
+/>
+
+## What worked
+
+According to the definitions that I stated earlier, my board was mainly functional since it had 5V along the power rail, a 438 Hz frequency, and a 65% duty cycle. However, there were some issues present with this board. The board would have trouble consistently distributing power throughout, which was evident by the LEDs remaining turned off. I confirmed this by measuring the test points and quiet LOW and HIGH to find that there was no signal passing into the hex inverters or even being outputted by the 555. This required me to resolder my 555 and slightly mitigate the issue. However, my signals through the hex inverters from the 555 were lower than they should have been, which required some more debugging. The potential error is likely due to the interconnect placed underneath the 555 timer to connect VCC to RESET. This interconnect was most likely covered up with solder and the 555 itself which means that the 555 timer received a very inconsistent output from the LDO.
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure6.png" 
+  alt="555 Timer Output" 
+  caption="555 timer output waveform after debugging"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure7.png" 
+  alt="555 Timer Measurements" 
+  caption="Frequency and duty cycle measurements of 555 timer output"
+/>
+
+## 555 Timer Output Analysis
+
+This is the 555 output after some time debugging. Here, I am confident that the solder pads are properly connected and that there are no errors up to this point. This is when the 555 timer is connected to the 5V power supply and acts similarly to board one, and this matches up to my expected measurements. However, I was still not sure about the complete effectiveness of my board; therefore, I put the switch on the LDO to output 3.3 V to see what the output of the waveform was. Additionally, the measured rise time was about 20 ns.
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure8.png" 
+  alt="555 Timer with 3.3V" 
+  caption="555 timer output when supplied with 3.3V"
+/>
+
+This graph represents the 555 timer output when it is supplied to 3.3 V. This does not entirely match up to my prediction because there is only a slight drop in amplitude and effectively no difference in peak-to-peak voltage. This makes sense because it should still have a clock signal with the same frequency and duty cycle. However, if those are the same, then something must give, which I expected to be the rise time. With a slightly larger rise time, I could conclude that the 3.3 V rail is being supplied. However, I could not measure enough of a significant change in rise times, which would not make sense because at lower voltages, the 555 timer would have lower drive capabilities since it is pushing less current. To confirm this hypothesis I performed a rough calculation:
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure9.png" 
+  alt="Rise Time Calculation" 
+  caption="Rise time calculation showing expected doubling when switching from 5V to 3.3V"
+/>
+
+Therefore, this calculator shows the rise time is expected to double when switched from 5V to 3.3 V, which does not line up with my measurements since they were similar rise times, proving that there are some hard errors within my board. At this point, it is safe to conclude that my board does not work completely as it should, however, I was still able to draw some measurements from my board, which shows some differences with bad and good layout practices.
+
+## Bad Layout Practice Measurements
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure10.png"  
+  alt="Quiet LOW Measurement" 
+  caption="Quiet LOW measurement of hex inverter on bad layout side"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure11.png" 
+  alt="Quiet LOW Analysis" 
+  caption="Analysis of quiet LOW waveform showing rise time"
+/>
+
+This measurement of quiet LOW of the hex inverter on the bad layout practice side of the board does have an approximate 500 Hz frequency along with a 50% duty cycle. However, the waveform has a peculiar shape with a rise time that appears faster than the fall time. Additionally, the quiet LOW has a rise time of 93.6 ns and includes some noise. However, this noise was not as noticeable as the quiet HIGH for the hex inverter on the bad layout practice side of the board:
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure12.png"  
+  alt="Quiet HIGH Measurement" 
+  caption="Quiet HIGH measurement of hex inverter on bad layout side"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure13.png"  
+  alt="Quiet HIGH Analysis" 
+  caption="Analysis showing increased noise in quiet HIGH measurement"
+/>
+
+This is the quiet HIGH for the bad hex which shows a significant increase in noise. This is when the issues with the board came into play again because when attempting to measure the rise time, it came in complete noise:
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure14.png"  
+  alt="Rise Time Noise" 
+  caption="Rise time measurement showing significant noise"
+/>
+
+However, this graph is not entirely useless because, in some regards, it still matches up with the expected behavior for the quiet HIGH, which would have much more noise on the rise time. While it is a byproduct of an error present within the board, there is still some information that can be brought out of this.
+
+## Good Layout Practice Measurements
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure15.jpg" 
+  alt="Good Layout Waveform" 
+  caption="Waveform from the good layout practice side showing cleaner signal"
+/>
+
+Analysis: Again, while the board has some pressing errors, it is still able to reflect the significance of a ground plane and good design practices overall. Here, it is evident that the noise has drastically decreased and is outputting a clean waveform that matches the frequency and duty cycle of the 555 timer. Additionally, there was a decrease in the rise time as well.
+
+## Additional Measurements
+
+While my board was not behaving the way I expected, it still was operational to an extent. This led me to want to still calculate the <em>R<sub>TH</sub></em> and <em>V<sub>TH</sub></em>:
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure16.png" 
+  alt="RTH and V Calculation" 
+  caption="Measurements for calculating RTH and V"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure17.png" 
+  alt="RTH and V Calculation" 
+  caption="Measurements for calculating RTH and V"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure18.png" 
+  alt="Circuit Model" 
+  caption="Circuit model replicated from lecture notes"
+/>
+
+I replicated this model from the lecture notes. I replicated it on my board by placing a resistor on the test point. Then I measured the voltage drop across that load, and this allowed me to calculate RTH (I am supplying 3.3 V to the hex inverters in this case).
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure19.png" 
+  alt="RTH Calculation" 
+  caption="RTH calculation based on measurements"
+/>
+
+## Analysis of the Project
+
+- The one part that I believe I did well with in this project was the labeling and actual layout of the board. The way the board was spaced and labeled made assembly (soldering) much easier, and I did not have to waste too much time soldering.
+
+- As for what went wrong, I have a few suspicions for the hard errors with this board. I believe the interconnects I placed to connect the RESET and VCC pins on the 555 timer were placed irresponsibly which lead to inconsistent outputs from the 555. There was not enough current pushed through the 555 into the hex inverters and I believe this is the culprit. The power rails were supplying the correct voltages but the errors were seen after the 555 timer which lead me to the conclusion that this was the main error.
+
+<Figure 
+  src="/images/projects/project-01/board-2/figure20.png" 
+  alt="Error Analysis" 
+  caption="Illustration of the interconnect issue that caused errors"
+/>
+
+For future boards, I will make sure to mitigate this by attempting to avoid under the board interconnects and keep routing as clean as possible. This was a significant error and lapse in judgment when designing the board, but at the very least, it can and will be avoided for future board designs.
+
+- A soft error or obstacle that I faced was leaving the board on for too long with poor solder connections on my LDO and 555 timer, which means I probably was drawing too much current for a sustained period in the first indicator LED, which led it to break. It was a quick fix by removing the part and resoldering a new LED. Again this most likely stemmed for the large issue that I had previously.

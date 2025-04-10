@@ -1,0 +1,386 @@
+---
+title: "Golden Arduino: Designing an Enhanced Arduino with Superior Signal Integrity"
+publishedAt: "2025-04-07"
+summary: "Design and implementation of a 'Golden Arduino' featuring a continuous ground plane and better interconnects to achieve optimal signal integrity, demonstrating superior performance compared to commercial Arduino boards."
+images:
+  - "/images/projects/project-01/golden-arduino.jpg"
+  - "/images/projects/project-01/board-3/figure2.png"
+team:
+  - name: "Yoni Bereket"
+    role: "Student"
+    avatar: "/images/avatar.jpg"
+---
+
+## Purpose of Report (POR)
+
+In this lab, I built a Golden Arduino, which is designed to operate better than a commercial Arduino. It will still be bootloaded and coded like a typical Arduino, however, it will have a continuous ground plane with better interconnects to obtain optimal signal integrity.
+
+## What does it mean to "work"?
+
+For this board to be considered working, it must bootload like the commercial Arduino and be able to run different code. If the board is at a minimum, able to run like the commercial Arduino, it works. These requirements include:
+- Proper power conditioning brought from either a USB or barrel jack to supply 5V, and confirmed by indicator LEDs
+- Bootloaded Arduino with code that will give proper measurements that can match the commercial Arduino
+
+## What I did
+
+I incorporated a power conditioning circuit to ensure that the board is properly powered with 5V through either a barrel jack or USB. There is an ATMEGA32 chip that will be bootloaded to make this board a functioning Arduino, along with the USB to serial converter, so everything can be processed.
+
+## What I expect (Rule #9)
+
+I expect when I place the shield after it is bootloaded, to see a cleaner signal on D13, which is the serial clock line from the Golden Arduino. This will look like a signal with smaller switching noise and faster rise times compared to the commercial arduino.
+
+## Design Process
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure1.png" 
+  alt="Altium Schematic" 
+  caption="Figure 1: Altium Schematic"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure2.png"
+  alt="Altium Layout" 
+  caption="Figure 2: Altium Layout"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure3.png"
+  alt="Printed Golden Arduino" 
+  caption="Figure 3: Printed Golden Arduino"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure4.png"
+  alt="Soldered Golden Arduino" 
+  caption="Figure 4: Soldered Golden Arduino"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure5.png"
+  alt="Powered Golden Arduino" 
+  caption="Figure 5: Powered Golden Arduino"
+/>
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure6.png"
+  alt="Code uploaded to both Arduinos" 
+  caption="Figure 6: Code uploaded to both Arduinos"
+/>
+
+
+## Bill of Materials
+
+<Table>
+  <TableCaption></TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Parts (Quantity)</TableHead>
+      <TableHead>Size</TableHead>
+      <TableHead>Additional Comments</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>5V Barrel Jack Power Supply</TableCell>
+      <TableCell>0.265 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>22 μF Capacitors</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Red LEDs</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>LDO</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>1k Ohm Resistors</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>3 Pin Switch</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>2 Pin Switch</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>1 μF Capacitors</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>10k Ohm Resistors</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Printed Circuit Board</TableCell>
+      <TableCell>3.9 x 3.8 mil</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>ATMega 32 Chip</TableCell>
+      <TableCell>0.179 sq. inch</TableCell>
+      <TableCell><a href="https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061B.pdf" target="_blank" rel="noopener noreferrer">Datasheet</a></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>47 nF</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+    <TableRow isEven={true}>
+      <TableCell>CH340G</TableCell>
+      <TableCell>0.145 sq. inch</TableCell>
+      <TableCell><a href="https://static.efetividade.net/img/ch340g-datasheet-34852.pdf" target="_blank" rel="noopener noreferrer">Datasheet</a></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>USB Mini</TableCell>
+      <TableCell>0.142 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>Tactile Switch</TableCell>
+      <TableCell>0.08 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>22 pF</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>Header Connector</TableCell>
+      <TableCell>0.09 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>2 Pin Header</TableCell>
+      <TableCell>0.032 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>6 Pin Header</TableCell>
+      <TableCell>0.069 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>10 μF Inductor</TableCell>
+      <TableCell>1206</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>16 MHz Crystal</TableCell>
+      <TableCell>0.028 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+     <TableRow>
+      <TableCell>12 MHz Crystal</TableCell>
+      <TableCell>0.028 sq. inch</TableCell>
+      <TableCell></TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## Measurements and Analysis
+
+### Power Rail Noise
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure7.png"
+  alt="Power Rail Noise Waveform" 
+  caption="Figure 7: Power Rail Noise Waveform"
+/>
+
+Analysis: This measurement corresponds to D13, which is shown in scope 3. Scope 1 is placed at the slammer circuit test point and has corresponding voltage spikes with the voltage passing through the 49-ohm resistor, and scope 4 is placed at the power rail.
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure8.png"
+  alt="Golden Arduino Triggered Waveform" 
+  caption="Figure 8: Golden Arduino Triggered Waveform"
+/>
+
+A properly triggered reading of the waveform gives us a peak-to-peak voltage of 2.25 V passing through the 49-ohm resistor, which results in a current draw of 0.0459 A. This second image is concerning the other scope, triggering it at ground to show what the triggered voltage passing through the resistor is.
+
+### Golden Arduino
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure9.png"
+  alt="Golden Arduino Power Rail Waveform" 
+  caption="Figure 9: Golden Arduino Power Rail Waveform"
+/>
+
+Analysis: This image is when scope 1 is connected to the slammer current test point, and scope 3 to D13, and already here it is evident that the waveform is cleaner and has significantly less noise. This will be clearer with rise and fall times.
+
+### Commercial Arduino
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure10.png"
+  alt="Commercial Arduino Power Rail Rise Time" 
+  caption="Figure 10: Commercial Arduino Power Rail Rise Time"
+/>
+
+The rise time shown here from scope 3 (D13) is about 36 ns. Additionally, scope 1, which is triggered, even has measurable noise itself.
+
+### Golden Arduino
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure11.png"
+  alt="Golden Arduino Power Rail Rise Time" 
+  caption="Figure 11: Golden Arduino Power Rail Rise Time"
+/>
+
+The Golden Arduino has a rise time of 4.309 ns, which is significantly faster than the commercial Arduino.
+
+### Commercial
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure12.png"
+  alt="Commercial Arduino Power Rail Fall Time" 
+  caption="Figure 12: Commercial Arduino Power Rail Fall Time"
+/>
+
+This is the fall time of the commercial Arduino, which is around 10 ns when triggered from the power rail. The falling edge is around 2.13 V.
+
+### Golden
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure13.png"
+  alt="Golden Arduino Power Rail Fall Time" 
+  caption="Figure 13: Golden Arduino Power Rail Fall Time"
+/>
+
+The Golden Arduino falling edge has a fall time of around 5 ns with a higher falling edge.
+
+Analysis: With these comparisons from the Golden and Commercial Arduino, we can see that the Commercial Arduino all around has a slower rise and fall time, and we could even see noise in scope 1, which was in reference to the slammer circuit test point. This shows that the Golden Arduino is capable of reducing switching noise and increasing signal integrity, which is valuable for a multitude of applications such as high-speed design.
+
+## Quiet Hi and Lo
+
+### Commercial
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure14.png"
+  alt="Commercial Arduino Quiet Low" 
+  caption="Figure 14: Commercial Arduino Quiet Low"
+/>
+
+This is the commercial Arduino quiet low measurement with scope 3 still on D13 while being triggered on quiet low with scope 1. The noise can be seen on the rising and falling edges.
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure15.png"
+  alt="Golden Arduino Quiet Lo" 
+  caption="Figure 15: Golden Arduino Quiet Lo"
+/>
+
+### Golden Arduino
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure16.png"
+  alt="Golden Arduino Quiet Hi" 
+  caption="Figure 16: Golden Arduino Quiet Hi"
+/>
+
+This is the same setup as before on the Golden Arduino, and some noise can still be seen on the corresponding edges of scope 3 on scope 1.
+
+### Commercial
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure17.png"
+  alt="Commercial Arduino Quiet Low Fall Time" 
+  caption="Figure 17: Commercial Arduino Quiet Low Fall Time"
+/>
+
+### Golden
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure18.png"
+  alt="Golden Arduino Quiet Low Fall Time" 
+  caption="Figure 18: Golden Arduino Quiet Low Fall Time"
+/>
+
+### Commercial
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure19.png"
+  alt="Commercial Arduino Quiet Hi Rise Time" 
+  caption="Figure 19: Commercial Arduino Quiet Hi Rise Time"
+/>
+
+### Golden
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure20.png"
+  alt="Golden Arduino Quiet Hi Rise Time" 
+  caption="Figure 20: Golden Arduino Quiet Hi Rise Time"
+/>
+
+### Comparison
+
+Above are the measurements for the rise times of the quiet hi and lo. These measurements demonstrate the overall better quality of the Golden Arduino since all around the rise and fall times were consistently lower for the Golden Arduino. This means we can conclude that the Golden Arduino has less noise and is overall a better-designed board than the commercial Arduino.
+
+## Field Emission
+
+### Commercial
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure21.png"
+  alt="Commercial Arduino Field Emission" 
+  caption="Figure 21: Commercial Arduino Field Emission"
+/>
+
+### Golden
+
+<Figure 
+  src="/images/projects/project-01/board-3/figure22.png"
+  alt="Golden Arduino Field Emission" 
+  caption="Figure 22: Golden Arduino Field Emission"
+/>
+
+Analysis: Once again, we see that scope 4, which is a closed-loop scope, is experiencing noise through the field emission and in the Golden Arduino it experiences a significantly less amount of noise from the board which affirms what we previously concluded which is the better functionality of the Golden Arduino.
+
+## Conclusion
+
+- The one part that I believe I did well with in this project was the labeling and actual layout of the board. The way the board was spaced and labeled made assembly (soldering) much easier, and I did not have to waste too much time soldering.
+- One issue found was that I placed a capacitor in series, and my capacitor along the switch was too large which would decrease functionality. To bypass the first issue I shorted one of the capacitor pads and the other was a easy fix as all I had to which make sure I placed the right component.
+- I also experienced issues with bootloading, which ultimately was a connection issue from the CH340G. which I could deduce due to this error:
+
+<CodeBlock
+    compact
+    codeInstances={[
+        {
+            code: `avrdude: Version 6.3-20190619
+Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
+Copyright (c) 2007-2014 Joerg Wunsch
+
+System wide configuration file is "C:\\Users\\YoniB\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\avrdude\\6.3.0-arduino17/etc/avrdude.conf"
+
+Using Port                    : COM5
+Using Programmer              : stk500v1
+Overriding Baud Rate          : 19200
+avrdude: ser_open(): can't open device "\\.\COM5": Access is denied.
+
+avrdude done.  Thank you.
+
+Failed chip erase: uploading error: exit status 1`,
+            label: 'avrdude Error Log',
+            language: 'log'
+        },
+    ]}
+    copyButton
+/>
+
+
+
+
+Overall, this was a very insightful and practical lab as I was able to see the importance of good practice designs and how their implementation can even outperform market products.
