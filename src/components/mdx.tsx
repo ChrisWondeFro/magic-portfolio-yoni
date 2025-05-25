@@ -1,7 +1,7 @@
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import React, { ReactNode, } from "react";
 
-import { SmartImage, SmartLink, Text, Column, Flex } from "@/once-ui/components";
+import { SmartImage, SmartLink, Text, Column } from "@/once-ui/components";
 import { CodeBlock } from "@/once-ui/modules";
 import { HeadingLink } from "@/components";
 
